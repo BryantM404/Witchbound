@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://os2a6wq4lral"
+path="res://.godot/imported/axeDouble_common.obj-8d9fb286e3eb853c12ba3f8d3e62c516.mesh"
+
+[deps]
+
+files=["res://.godot/imported/axeDouble_common.obj-8d9fb286e3eb853c12ba3f8d3e62c516.mesh"]
+
+source_file="res://KayKit Dungeon Pack 1.0/Models/obj/axeDouble_common.obj"
+dest_files=["res://.godot/imported/axeDouble_common.obj-8d9fb286e3eb853c12ba3f8d3e62c516.mesh", "res://.godot/imported/axeDouble_common.obj-8d9fb286e3eb853c12ba3f8d3e62c516.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

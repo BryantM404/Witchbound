@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cqxqartsmgx2"
+path="res://.godot/imported/bookF.obj-36a3da296d206138af7efbb9690106df.mesh"
+
+[deps]
+
+files=["res://.godot/imported/bookF.obj-36a3da296d206138af7efbb9690106df.mesh"]
+
+source_file="res://KayKit Dungeon Pack 1.0/Models/obj/bookF.obj"
+dest_files=["res://.godot/imported/bookF.obj-36a3da296d206138af7efbb9690106df.mesh", "res://.godot/imported/bookF.obj-36a3da296d206138af7efbb9690106df.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cg3bgn1nqp1dq"
+path="res://.godot/imported/wall_gateDoor.obj-19cb1b0f03ec41f5a323e6b8baf7d77d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/wall_gateDoor.obj-19cb1b0f03ec41f5a323e6b8baf7d77d.mesh"]
+
+source_file="res://KayKit Dungeon Pack 1.0/Models/obj/wall_gateDoor.obj"
+dest_files=["res://.godot/imported/wall_gateDoor.obj-19cb1b0f03ec41f5a323e6b8baf7d77d.mesh", "res://.godot/imported/wall_gateDoor.obj-19cb1b0f03ec41f5a323e6b8baf7d77d.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
