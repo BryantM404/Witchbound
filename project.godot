@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Bomberman3D"
+run/main_scene="uid://dvxr228b5anp0"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
