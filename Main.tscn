@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dvxr228b5anp0"]
+
+[ext_resource type="PackedScene" uid="uid://t0t5c5a3xj5g" path="res://Player.tscn" id="1_glv2v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rxg2q"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_glv2v"]
+material = SubResource("StandardMaterial3D_rxg2q")
+size = Vector2(20, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_glv2v"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[node name="Node3D" type="Node3D" unique_id=477808356]
+
+[node name="Lantai" type="StaticBody3D" parent="." unique_id=1780828050]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Lantai" unique_id=1605222619]
+mesh = SubResource("PlaneMesh_glv2v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lantai" unique_id=2040518550]
+shape = SubResource("ConcavePolygonShape3D_glv2v")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=777082286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 5, 45)
+shadow_enabled = true
+
+[node name="Player" parent="." unique_id=1901939185 instance=ExtResource("1_glv2v")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1091598106]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 3.8446012, -5.940608)
