@@ -42,63 +42,85 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= gravity * delta
 
 	# Ambil input WASD / Arrow Key
-	var input_dir := Input.get_vector(
-		"ui_left",
-		"ui_right",
-		"ui_up",
-		"ui_down"
-	)
+	#var input_dir := Input.get_vector(
+		#"ui_left",
+		#"ui_right",
+		#"ui_up",
+		#"ui_down"
+	#)
+#
+	## Pembalikan arah manual
+	#if balikkan_kanan_kiri:
+		#input_dir.x = -input_dir.x
+#
+	#if balikkan_maju_mundur:
+		#input_dir.y = -input_dir.y
+#
+	#var direction := Vector3.ZERO
+	
+	# Putar karakter
+	if Input.is_action_pressed("ui_left"):
+		rotation.y += 3.0 * delta
 
-	# Pembalikan arah manual
-	if balikkan_kanan_kiri:
-		input_dir.x = -input_dir.x
+	if Input.is_action_pressed("ui_right"):
+		rotation.y -= 3.0 * delta
 
-	if balikkan_maju_mundur:
-		input_dir.y = -input_dir.y
+	# Maju mundur
+	var move_input := 0.0
 
-	var direction := Vector3.ZERO
+	if Input.is_action_pressed("ui_up"):
+		move_input = -1.0
+
+	if Input.is_action_pressed("ui_down"):
+		move_input = 1.0
+
+	# Arah depan karakter
+	var forward = -transform.basis.z
+
+	velocity.x = forward.x * move_input * SPEED
+	velocity.z = forward.z * move_input * SPEED
 
 	# Gerak relatif terhadap kamera
-	if pergerakan_relatif_kamera:
-		var camera = get_viewport().get_camera_3d()
-
-		if camera:
-			var cam_forward = -camera.global_transform.basis.z
-			var cam_right = camera.global_transform.basis.x
-
-			cam_forward.y = 0
-			cam_right.y = 0
-
-			cam_forward = cam_forward.normalized()
-			cam_right = cam_right.normalized()
-
-			direction = (
-				cam_right * input_dir.x +
-				cam_forward * -input_dir.y
-			).normalized()
-	else:
-		direction = Vector3(
-			-input_dir.x,
-			0,
-			-input_dir.y
-		).normalized()
+	#if pergerakan_relatif_kamera:
+		#var camera = get_viewport().get_camera_3d()
+#
+		#if camera:
+			#var cam_forward = -camera.global_transform.basis.z
+			#var cam_right = camera.global_transform.basis.x
+#
+			#cam_forward.y = 0
+			#cam_right.y = 0
+#
+			#cam_forward = cam_forward.normalized()
+			#cam_right = cam_right.normalized()
+#
+			#direction = (
+				#cam_right * input_dir.x +
+				#cam_forward * -input_dir.y
+			#).normalized()
+	#else:
+		#direction = Vector3(
+			#-input_dir.x,
+			#0,
+			#-input_dir.y
+		#).normalized()
 	
 	# Proses pergerakan
-	if direction != Vector3.ZERO:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+	if move_input != 0:
+		#velocity.x = direction.x * SPEED
+		#velocity.z = direction.z * SPEED
 
 		# Rotasi karakter menghadap arah gerak
-		var target_rotation = (
-			atan2(-direction.x, -direction.z)
-			+ deg_to_rad(koreksi_arah_hadap)
-		)
-
-		rotation.y = lerp_angle(
-			rotation.y,
-			target_rotation,
-			15.0 * delta
-		)
+		#var target_rotation = (
+			#atan2(-direction.x, -direction.z)
+			#+ deg_to_rad(koreksi_arah_hadap)
+		#)
+#
+		#rotation.y = lerp_angle(
+			#rotation.y,
+			#target_rotation,
+			#15.0 * delta
+		#)
 
 		# Animasi berjalan
 		if anim_player:

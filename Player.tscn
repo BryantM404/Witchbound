@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://deq3q4bd1qd4h" path="res://player.gd" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://djou5icia5xih" path="res://KayKit_Adventurers_2.0_FREE/KayKit_Adventurers_2.0_FREE/Characters/gltf/Barbarian_barbarian_texture.png" id="2_kpjcp"]
 [ext_resource type="AnimationLibrary" uid="uid://boi54dqhthm7r" path="res://KayKit_Adventurers_2.0_FREE/KayKit_Adventurers_2.0_FREE/Animations/gltf/Rig_Medium/Rig_Medium_MovementBasic.glb" id="3_e80uo"]
+[ext_resource type="Script" uid="uid://byfol0rvfavvh" path="res://camera_pivot.gd" id="4_e80uo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xn20x"]
 resource_name = "barbarian"
@@ -6421,3 +6422,15 @@ libraries/Rig_Medium_MovementBasic = ExtResource("3_e80uo")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1532013232]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1589355, 0)
 shape = SubResource("CapsuleShape3D_kne1u")
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=2065989382 node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 2, 0)
+script = ExtResource("4_e80uo")
+player = NodePath("")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=2090246019]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -7.1054274e-15, 0, 1, 0, 1.78, -3.38)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=558323511]
+transform = Transform3D(-1, -5.406298e-08, 6.8701794e-08, 0, 0.7858569, 0.61840844, -8.7422784e-08, 0.61840844, -0.7858569, 0, 12.720001, -9.775001)
+current = true
