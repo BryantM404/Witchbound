@@ -5,7 +5,7 @@ extends CharacterBody3D
 
 # --- FITUR ANTI-KONTROL TERBALIK ---
 # Jika dicentang, arah pergerakan akan disesuaikan dengan sudut pandang kamera aktif
-@export var pergerakan_relatif_kamera: bool = true
+@export var pergerakan_relatif_kamera: bool = false
 
 # AKTIFKAN INI JIKA GERAKAN TERASA TERBALIK/BERLAWANAN!
 # Cukup centang di Inspector untuk membalikkan arah instan
@@ -34,8 +34,9 @@ func _ready() -> void:
 			print("- ", anim_name)
 	else:
 		push_error("ERROR: Node AnimationPlayer tidak ditemukan di bawah Rig_Medium_General!")
-
+	
 func _physics_process(delta: float) -> void:
+	
 	# Gravitasi jika di udara
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -77,11 +78,11 @@ func _physics_process(delta: float) -> void:
 			).normalized()
 	else:
 		direction = Vector3(
-			input_dir.x,
+			-input_dir.x,
 			0,
-			input_dir.y
+			-input_dir.y
 		).normalized()
-
+	
 	# Proses pergerakan
 	if direction != Vector3.ZERO:
 		velocity.x = direction.x * SPEED

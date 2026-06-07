@@ -1,32 +1,42 @@
 [gd_scene format=3 uid="uid://dvxr228b5anp0"]
 
 [ext_resource type="PackedScene" uid="uid://t0t5c5a3xj5g" path="res://Player.tscn" id="1_glv2v"]
+[ext_resource type="PackedScene" uid="uid://dttdjrvrxuj2i" path="res://root.tscn" id="2_uu6xs"]
+[ext_resource type="Script" uid="uid://byfol0rvfavvh" path="res://camera_pivot.gd" id="3_r0du0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rxg2q"]
-albedo_color = Color(1, 0, 1, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uu6xs"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_glv2v"]
-material = SubResource("StandardMaterial3D_rxg2q")
-size = Vector2(20, 20)
+[sub_resource type="Sky" id="Sky_r0du0"]
+sky_material = SubResource("ProceduralSkyMaterial_uu6xs")
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_glv2v"]
-data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+[sub_resource type="Environment" id="Environment_cm0pq"]
+background_mode = 2
+sky = SubResource("Sky_r0du0")
+tonemap_mode = 2
+glow_enabled = true
 
 [node name="Node3D" type="Node3D" unique_id=477808356]
 
-[node name="Lantai" type="StaticBody3D" parent="." unique_id=1780828050]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1024601321]
+environment = SubResource("Environment_cm0pq")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Lantai" unique_id=1605222619]
-mesh = SubResource("PlaneMesh_glv2v")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Lantai" unique_id=2040518550]
-shape = SubResource("ConcavePolygonShape3D_glv2v")
+[node name="Map" parent="." unique_id=359194766 instance=ExtResource("2_uu6xs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=777082286]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 5, 45)
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=1901939185 instance=ExtResource("1_glv2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0.008, -26.341)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1091598106]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 3.8446012, -5.940608)
+[node name="CameraPivot" type="Node3D" parent="." unique_id=1026830053 node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("3_r0du0")
+player = NodePath("../Player")
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=121295092]
+transform = Transform3D(-1, 5.406298e-08, -6.870179e-08, 0, 0.78585684, 0.6184084, 8.742278e-08, 0.6184084, -0.78585684, 0, 10, -6.38)
+current = true
