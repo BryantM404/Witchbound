@@ -11,8 +11,10 @@ ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 sky_material = SubResource("ProceduralSkyMaterial_uu6xs")
 
 [sub_resource type="Environment" id="Environment_cm0pq"]
-background_mode = 2
+background_mode = 1
 sky = SubResource("Sky_r0du0")
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.2
 tonemap_mode = 2
 glow_enabled = true
 
@@ -23,10 +25,6 @@ environment = SubResource("Environment_cm0pq")
 
 [node name="Map" parent="." unique_id=359194766 instance=ExtResource("2_uu6xs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=777082286]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 5, 45)
-shadow_enabled = true
 
 [node name="Player" parent="." unique_id=1901939185 instance=ExtResource("1_glv2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0.008, -26.341)
