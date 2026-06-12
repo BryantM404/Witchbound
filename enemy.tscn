@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c3i780mweroxl"]
+
+[ext_resource type="Script" uid="uid://q52xlrqfldei" path="res://enemy.gd" id="1_7k104"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4gyqm"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qi2p4"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_iifgy"]
+radius = 3.0
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1008725346 groups=["enemy"]]
+script = ExtResource("1_7k104")
+SPEED = 5.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1641832649]
+mesh = SubResource("CapsuleMesh_4gyqm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=918607176]
+shape = SubResource("CapsuleShape3D_qi2p4")
+
+[node name="AttackArea" type="Area3D" parent="." unique_id=928479308]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea" unique_id=184693531]
+shape = SubResource("CylinderShape3D_iifgy")
