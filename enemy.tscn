@@ -1,25 +1,44 @@
 [gd_scene format=3 uid="uid://c3i780mweroxl"]
 
 [ext_resource type="Script" uid="uid://q52xlrqfldei" path="res://enemy.gd" id="1_7k104"]
+[ext_resource type="PackedScene" uid="uid://nvgyhpa2ca7s" path="res://KayKit_Adventurers_2.0_FREE/KayKit_Adventurers_2.0_FREE/Characters/gltf/Rogue.glb" id="2_qi2p4"]
+[ext_resource type="PackedScene" uid="uid://4ey0psa38c0n" path="res://KayKit Dungeon Pack 1.0/Models/gltf/dagger_rare.gltf.glb" id="3_iifgy"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_4gyqm"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_epg4t"]
+radius = 0.9008789
+height = 2.3590088
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qi2p4"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3yqyl"]
+radius = 2.0
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_iifgy"]
-radius = 3.0
-
-[node name="Enemy" type="CharacterBody3D" unique_id=1008725346 groups=["enemy"]]
+[node name="Enemy" type="CharacterBody3D" unique_id=663421275 groups=["enemy"]]
 script = ExtResource("1_7k104")
 SPEED = 5.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1641832649]
-mesh = SubResource("CapsuleMesh_4gyqm")
+[node name="Rogue" parent="." unique_id=1293049820 instance=ExtResource("2_qi2p4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8680944, -1.3526249, -0.20429254)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=918607176]
-shape = SubResource("CapsuleShape3D_qi2p4")
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Rogue" unique_id=1788259869]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6016097, 0.33507347, -1.3519868)
+bone_name = "hand.L"
 
-[node name="AttackArea" type="Area3D" parent="." unique_id=928479308]
+[node name="dagger_rare_gltf" parent="Rogue/BoneAttachment3D" unique_id=1452720818 instance=ExtResource("3_iifgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.489341, 0.850038, 1.3505074)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea" unique_id=184693531]
-shape = SubResource("CylinderShape3D_iifgy")
+[node name="EnemySwordArea" type="Area3D" parent="Rogue/BoneAttachment3D/dagger_rare_gltf" unique_id=1241116399]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01153636, 0.346498, -0.02052784)
+collision_layer = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rogue/BoneAttachment3D/dagger_rare_gltf/EnemySwordArea" unique_id=648807320]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.092442274, -0.09784448, 0.08532262)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2008977479]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8670504, -0.17799354, -0.1687541)
+shape = SubResource("CapsuleShape3D_epg4t")
+
+[node name="DetectionArea" type="Area3D" parent="." unique_id=777100512]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1590.0537, -423.4068, -229.39903)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea" unique_id=1987652028]
+shape = SubResource("CylinderShape3D_3yqyl")
