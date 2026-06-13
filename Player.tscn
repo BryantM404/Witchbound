@@ -428,7 +428,7 @@ blend_shape_mode = 0
 _data = [Vector2(0.047619052, 0.82724255), 0.0, 0.0, 0, 0, Vector2(0.5313283, 0.56418), 0.0, 0.0, 0, 0, Vector2(1, 0.23829657), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_dtqjt"]
+[sub_resource type="CurveTexture" id="CurveTexture_tdg3f"]
 curve = SubResource("Curve_tdg3f")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tdg3f"]
@@ -448,14 +448,14 @@ tangential_accel_min = -2.2351742e-06
 tangential_accel_max = 0.87999773
 damping_max = 2.845
 scale_max = 2.0
-scale_curve = SubResource("CurveTexture_dtqjt")
+scale_curve = SubResource("CurveTexture_tdg3f")
 hue_variation_min = -0.020000022
 hue_variation_max = -0.020000022
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wi0c6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtqjt"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_tdg3f"]
-material = SubResource("StandardMaterial3D_wi0c6")
+material = SubResource("StandardMaterial3D_dtqjt")
 radius = 0.05
 height = 0.1
 
@@ -6401,7 +6401,7 @@ _data = {
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kne1u"]
 height = 2.6762695
 
-[node name="Player" type="CharacterBody3D" unique_id=1901939185]
+[node name="Player" type="CharacterBody3D" unique_id=1901939185 groups=["player"]]
 script = ExtResource("1_kpjcp")
 
 [node name="Rig_Medium_General" type="Node3D" parent="." unique_id=1231099558]
@@ -6642,45 +6642,47 @@ mesh = SubResource("ArrayMesh_p623c")
 skin = SubResource("Skin_d8rb3")
 skeleton = NodePath("..")
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Rig_Medium_General/Rig_Medium/Skeleton3D" unique_id=311979997]
+[node name="Tangan_Kiri" type="BoneAttachment3D" parent="Rig_Medium_General/Rig_Medium/Skeleton3D" unique_id=311979997]
 transform = Transform3D(3.8131046e-07, 0.2628628, 0.96483254, 0.9999987, 1.19209155e-07, 6.604045e-07, 4.673778e-07, 0.96483237, -0.26286316, 0.50776786, 0.6367053, -0.01852119)
 bone_name = "handslot.l"
 bone_idx = 13
 
-[node name="torch_gltf" parent="Rig_Medium_General/Rig_Medium/Skeleton3D/BoneAttachment3D" unique_id=1630867858 instance=ExtResource("3_tdg3f")]
+[node name="torch_gltf" parent="Rig_Medium_General/Rig_Medium/Skeleton3D/Tangan_Kiri" unique_id=1630867858 instance=ExtResource("3_tdg3f")]
 transform = Transform3D(-0.043762993, 0.44141373, -0.36488393, 0.10700289, 0.27655527, 0.5754931, 0.64607114, -0.015903685, -0.120029196, 0.3020032, 0.2236133, 0.09017324)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Rig_Medium_General/Rig_Medium/Skeleton3D/BoneAttachment3D/torch_gltf" unique_id=976597688]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rig_Medium_General/Rig_Medium/Skeleton3D/Tangan_Kiri/torch_gltf" unique_id=976597688]
 transform = Transform3D(-0.8130071, -0.090473294, -0.57518154, 0.09880857, 0.9520879, -0.2894227, 0.57380855, -0.29213563, -0.76511484, 0.037213445, -0.047268093, 0.014205456)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Rig_Medium_General/Rig_Medium/Skeleton3D/BoneAttachment3D/torch_gltf" unique_id=527219729]
+[node name="OmniLight3D" type="OmniLight3D" parent="Rig_Medium_General/Rig_Medium/Skeleton3D/Tangan_Kiri/torch_gltf" unique_id=527219729]
 transform = Transform3D(-1.2187335, -0.24635504, -0.8805741, 0.14811873, 1.7793959, -0.7028151, 0.8601652, -0.48789924, -1.0539893, 0.35371792, 1.3544091, 0.11243734)
 light_color = Color(1, 0.7607843, 0.33333334, 1)
 light_energy = 3.0
 shadow_enabled = true
 omni_range = 5.026
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Rig_Medium_General/Rig_Medium/Skeleton3D/BoneAttachment3D/torch_gltf" unique_id=1397166921]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Rig_Medium_General/Rig_Medium/Skeleton3D/Tangan_Kiri/torch_gltf" unique_id=1397166921]
 transform = Transform3D(0.9999999, -4.61936e-07, -2.9802322e-08, 2.1606684e-07, 2.9791217, 5.9604645e-08, -2.9802322e-08, -3.5762787e-07, 0.9999999, 0.057424307, 0.71904314, -0.20965847)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_tdg3f")
 draw_pass_1 = SubResource("SphereMesh_tdg3f")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Rig_Medium_General/Rig_Medium/Skeleton3D/BoneAttachment3D/torch_gltf" unique_id=664321491]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Rig_Medium_General/Rig_Medium/Skeleton3D/Tangan_Kiri/torch_gltf" unique_id=664321491]
 transform = Transform3D(0.2, 0, 0, 0, 0.29735127, 0, 0, 0, 0.2, -5.5879354e-09, 0.6126601, 5.9604646e-09)
 mesh = SubResource("SphereMesh_wi0c6")
 
-[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Rig_Medium_General/Rig_Medium/Skeleton3D" unique_id=942054746]
+[node name="Tangan_Kanan" type="BoneAttachment3D" parent="Rig_Medium_General/Rig_Medium/Skeleton3D" unique_id=942054746]
 transform = Transform3D(6.0328017e-07, -0.14989421, -0.9887017, -0.99999887, 2.0861614e-07, 9.416043e-08, -3.5968725e-07, 0.9887013, -0.1498949, -0.4910608, 0.64102995, 0.10659543)
 bone_name = "handslot.r"
 bone_idx = 18
 
-[node name="sword_rare_gltf" parent="Rig_Medium_General/Rig_Medium/Skeleton3D/BoneAttachment3D2" unique_id=1217985479 instance=ExtResource("4_tdg3f")]
+[node name="sword_rare_gltf" parent="Rig_Medium_General/Rig_Medium/Skeleton3D/Tangan_Kanan" unique_id=1217985479 instance=ExtResource("4_tdg3f")]
 transform = Transform3D(0.5975143, 0.24906814, -0.07268804, -0.2472451, 0.601919, 0.030077666, 0.0786654, -5.8711528e-08, 0.64664775, 0.053377718, 0.15072572, 0.05812028)
 
-[node name="SwordArea" type="Node3D" parent="Rig_Medium_General/Rig_Medium/Skeleton3D/BoneAttachment3D2/sword_rare_gltf/sword_rare" parent_id_path=PackedInt32Array(1217985479, 1418130378) index="0" unique_id=999722588]
+[node name="SwordArea" type="Area3D" parent="Rig_Medium_General/Rig_Medium/Skeleton3D/Tangan_Kanan/sword_rare_gltf/sword_rare" parent_id_path=PackedInt32Array(1217985479, 1616910697) index="0" unique_id=1606073280]
+collision_layer = 0
+collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Rig_Medium_General/Rig_Medium/Skeleton3D/BoneAttachment3D2/sword_rare_gltf/sword_rare/SwordArea" unique_id=1346651329]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rig_Medium_General/Rig_Medium/Skeleton3D/Tangan_Kanan/sword_rare_gltf/sword_rare/SwordArea" unique_id=1346651329]
 transform = Transform3D(0.99999994, -2.9802322e-08, -7.450581e-09, -8.940697e-08, 0.99999887, 1.4901161e-08, 9.49949e-07, 1.937151e-07, 1, 2.9802322e-07, 1.0946486, 5.9604645e-08)
 shape = SubResource("CapsuleShape3D_tdg3f")
 
@@ -6709,4 +6711,6 @@ light_color = Color(1, 0.7607843, 0.33333334, 1)
 light_energy = 0.746
 omni_range = 2.5
 
-[editable path="Rig_Medium_General/Rig_Medium/Skeleton3D/BoneAttachment3D2/sword_rare_gltf"]
+[connection signal="body_entered" from="Rig_Medium_General/Rig_Medium/Skeleton3D/Tangan_Kanan/sword_rare_gltf/sword_rare/SwordArea" to="." method="_on_sword_area_body_entered"]
+
+[editable path="Rig_Medium_General/Rig_Medium/Skeleton3D/Tangan_Kanan/sword_rare_gltf"]
