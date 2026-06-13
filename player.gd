@@ -17,9 +17,10 @@ var current_hp: float = MAX_HP
 # Efek gravitasi
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-# Status attack & hidup
+# Status attack, hidup, & spawn
 var is_attacking := false
-var is_dead := false # BARU: Untuk mendeteksi status kematian secara global
+var is_dead := false 
+var is_spawning := false # BARU: Mengunci pergerakan selama proses spawn awal/respawn
 
 # Gaya warna dinamis untuk Bar HP Player
 var sb_style: StyleBoxFlat = null
@@ -35,26 +36,31 @@ var sb_style: StyleBoxFlat = null
 
 func _ready() -> void:
 	current_hp = MAX_HP
-	is_dead = false # Reset status hidup saat scene dimuat ulang
+	is_dead = false 
 	
 	# Inisialisasi awal nilai dan gaya warna ProgressBar Player
 	if player_hp_bar:
 		player_hp_bar.max_value = MAX_HP
 		player_hp_bar.value = current_hp
+		player_hp_bar.visible = true # Pastikan HP Bar muncul kembali setelah restart
 		
-		# Membuat StyleBoxFlat baru agar warna abu-abu bawaan bisa kita timpa
 		if player_hp_bar.has_theme_stylebox_override("fill"):
 			sb_style = player_hp_bar.get_theme_stylebox_override("fill").duplicate()
 		else:
 			sb_style = StyleBoxFlat.new()
 			
 		player_hp_bar.add_theme_stylebox_override("fill", sb_style)
-		sb_style.bg_color = Color.GREEN # Set warna awal: Hijau
+		sb_style.bg_color = Color.GREEN 
 		
 	update_ui()
 	
 	if anim_player:
 		anim_player.animation_finished.connect(_on_animation_finished)
+		
+		# --- BARU: TRIGGER ANIMASI SPAWN SAAT BARU LAHIR / RESTART ---
+		if anim_player.has_animation("Spawn_Air"):
+			is_spawning = true
+			anim_player.play("Spawn_Air")
 
 	# Menghubungkan sinyal deteksi pukulan pedang
 	if sword_area:
@@ -62,7 +68,8 @@ func _ready() -> void:
 		sword_area.monitoring = false
 
 func _input(event):
-	if event.is_action_pressed("attack") and !is_attacking and !is_dead:
+	# Mencegah serangan jika sedang menyerang, mati, ATAU dalam proses spawn
+	if event.is_action_pressed("attack") and !is_attacking and !is_dead and !is_spawning:
 		start_attack()
 
 func start_attack():
@@ -81,13 +88,18 @@ func _on_animation_finished(anim_name):
 		if sword_area:
 			sword_area.monitoring = false
 			
-	# --- BARU: RESTART GAME OTOMATIS SAAT ANIMASI MATI SELESAI ---
+	# --- BARU: SELESAI PROSES SPAWN, PLAYER SEKARANG BISA DIKONTROL ---
+	elif anim_name == "Spawn_Air":
+		is_spawning = false
+		print("Spawn selesai, player siap bergerak!")
+			
+	# RESTART GAME OTOMATIS SAAT ANIMASI MATI SELESAI
 	elif anim_name == "Death_A" or anim_name == "Death":
 		print("Animasi kematian selesai, merestart game...")
-		get_tree().reload_current_scene() # Mengulang panggung dari awal tanpa reset program luar
+		get_tree().reload_current_scene() 
 
 func take_damage(amount: float):
-	if is_dead: return # Jika sudah mati, abaikan hit tambahan
+	if is_dead or is_spawning: return # Kebal dari damage saat sedang proses spawn awal
 	
 	current_hp -= amount
 	update_ui()
@@ -95,7 +107,6 @@ func take_damage(amount: float):
 	if current_hp <= 0:
 		die()
 	else:
-		# Jalankan animasi terkena hit (Hit_A) jika player masih hidup
 		if anim_player and anim_player.has_animation("Hit_A"):
 			is_attacking = false
 			if sword_area: 
@@ -106,22 +117,21 @@ func update_ui():
 	if player_hp_label:
 		player_hp_label.text = "Player HP: " + str(current_hp)
 		
-	# Mengatur nilai dan transisi warna dinamis pada HP Bar Player
 	if player_hp_bar:
 		player_hp_bar.value = current_hp
 		
 		if sb_style:
 			if current_hp <= 14.0:
-				sb_style.bg_color = Color.RED       # 14 sampai 0 = MERAH
+				sb_style.bg_color = Color.RED       
 			elif current_hp <= 49.0:
-				sb_style.bg_color = Color.ORANGE    # 49 sampai 15 = OREN
+				sb_style.bg_color = Color.ORANGE    
 			else:
-				sb_style.bg_color = Color.GREEN     # 100 sampai 50 = HIJAU
+				sb_style.bg_color = Color.GREEN     
 
 func die():
 	if is_dead: return
 	
-	is_dead = true # Aktifkan status kematian agar musuh bisa mendeteksi lewat sistem sebelumnya
+	is_dead = true 
 	
 	if player_hp_label:
 		player_hp_label.text = "PLAYER DIED! GAME OVER"
@@ -130,7 +140,6 @@ func die():
 	if player_hp_bar:
 		player_hp_bar.visible = false
 		
-	# Memutar animasi kematian Death_A saat HP menyentuh 0
 	if anim_player:
 		if anim_player.has_animation("Death_A"):
 			anim_player.play("Death_A")
@@ -148,6 +157,15 @@ func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
 
+	# --- BARU: Kunci pergerakan dan biarkan jatuh secara fisik selama animasi Spawn ---
+	if is_spawning:
+		velocity.x = 0
+		velocity.z = 0
+		if not is_on_floor():
+			velocity.y -= gravity * delta
+		move_and_slide()
+		return
+
 	# Saat attack, karakter tidak bisa bergerak
 	if is_attacking:
 		velocity.x = 0
@@ -157,33 +175,31 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
-	# Gravitasi jika di udara
+	# Gravitasi jika di udara biasa
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# --- 1. KEMBALI KE LOGIKA ROTASI (Kanan/Kiri) ---
+	# --- 1. LOGIKA ROTASI (Kanan/Kiri) ---
 	if Input.is_action_pressed("ui_left"):
-		rotation.y += 3.0 * delta # Berputar ke kiri
+		rotation.y += 3.0 * delta 
 
 	if Input.is_action_pressed("ui_right"):
-		rotation.y -= 3.0 * delta # Berputar ke kanan
+		rotation.y -= 3.0 * delta 
 
 	# --- 2. LOGIKA MAJU MUNDUR ---
 	var move_input := 0.0
 
 	if Input.is_action_pressed("ui_up"):
-		move_input = -1.0 # Maju ke arah depan karakter
+		move_input = -1.0 
 
 	if Input.is_action_pressed("ui_down"):
-		move_input = 1.0  # Mundur ke arah belakang karakter
+		move_input = 1.0  
 
-	# Mendapatkan arah hadapan depan karakter sesungguhnya
 	var forward = -transform.basis.z
 
 	velocity.x = forward.x * move_input * SPEED
 	velocity.z = forward.z * move_input * SPEED
 
-	# Proses pergerakan dan animasi jika ada input maju/mundur
 	if move_input != 0:
 		if anim_player:
 			if anim_player.has_animation("Walking_A_Manual"): anim_player.play("Walking_A_Manual")
@@ -192,7 +208,6 @@ func _physics_process(delta: float) -> void:
 			elif anim_player.has_animation("walk"): anim_player.play("walk")
 			elif anim_player.has_animation("Walk"): anim_player.play("Walk")
 	else:
-		# Perlambatan saat berhenti
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
@@ -207,7 +222,6 @@ func _on_sword_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("enemy") and body.has_method("take_damage"):
 		body.take_damage(25) 
 		
-		# Memperbarui UI teks dengan variabel yang sesuai di skrip musuh (MAX_HP)
 		if enemy_hp_label:
 			if body.current_hp > 0:
 				enemy_hp_label.text = "Enemy HP: " + str(body.current_hp) + " / " + str(body.MAX_HP)
