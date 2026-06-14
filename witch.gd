@@ -26,7 +26,7 @@ func _process(_delta):
 			label.text = "Terima kasih, petualang!"
 			print("PLAYER MENANG!")
 			await get_tree().create_timer(2.0).timeout
-			get_tree().change_scene_to_file("res://victory.tscn")
+			get_tree().change_scene_to_file("res://ending.tscn")
 
 		else:
 

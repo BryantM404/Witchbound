@@ -240,7 +240,7 @@ func tambah_artefak_asli():
 	print("Artefak asli dibawa: ", jumlah_artefak_terkumpul)
 	# Di sini kamu bisa update teks UI kelompokmu, misal: "Artefak: 1/2"
 
-func tambah_staff():
+func tambah_staff(a):
 
 	jumlah_staff_terkumpul += 1
 

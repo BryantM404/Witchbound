@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="Bomberman3D"
+config/name="Witchbound"
 run/main_scene="uid://ncpe5ps583cx"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
+run/name="Bomberman3D"
 
 [autoload]
 

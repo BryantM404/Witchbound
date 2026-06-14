@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bjbepp228ieem" path="res://opening.gd" id="1_4qvrg"]
 [ext_resource type="FontFile" uid="uid://cmcvesiqx7f5n" path="res://Fonts/Roman_New_Times.otf" id="2_hsrnu"]
+[ext_resource type="Texture2D" uid="uid://mcmp0lpd5ehb" path="res://Logo_Witchbound.png" id="3_ulneq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hsrnu"]
 bg_color = Color(0.91475123, 0.91496545, 0.5991015, 1)
@@ -43,6 +44,16 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="LogoWb" type="TextureRect" parent="." unique_id=435641234]
+z_index = 10
+layout_mode = 0
+offset_left = 197.0
+offset_top = -16.0
+offset_right = 2008.2798
+offset_bottom = 1247.0612
+scale = Vector2(0.40413412, 0.39111328)
+texture = ExtResource("3_ulneq")
+
 [node name="BtnSkip" type="Button" parent="." unique_id=1812558602]
 layout_mode = 0
 offset_left = 1071.0
@@ -56,9 +67,9 @@ text = "SKIP"
 [node name="BtnStart" type="Button" parent="." unique_id=1900869928]
 layout_mode = 0
 offset_left = 320.0
-offset_top = 250.0
+offset_top = 443.0
 offset_right = 816.0
-offset_bottom = 368.0
+offset_bottom = 561.0
 theme_override_colors/font_color = Color(0.6893719, 0.76121306, 0.13687769, 1)
 theme_override_fonts/font = ExtResource("2_hsrnu")
 theme_override_font_sizes/font_size = 80

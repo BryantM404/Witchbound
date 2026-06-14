@@ -47,7 +47,7 @@ func _process(_delta):
 
 			await anim_player.animation_finished
 
-			get_tree().change_scene_to_file("res://map_2.tscn")
+			get_tree().change_scene_to_file("res://perjalanan.tscn")
 
 		else:
 
