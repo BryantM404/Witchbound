@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://ncpe5ps583cx"]
+
+[ext_resource type="Script" uid="uid://bjbepp228ieem" path="res://opening.gd" id="1_4qvrg"]
+[ext_resource type="FontFile" uid="uid://cmcvesiqx7f5n" path="res://Fonts/Roman_New_Times.otf" id="2_hsrnu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hsrnu"]
+bg_color = Color(0.91475123, 0.91496545, 0.5991015, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ulneq"]
+bg_color = Color(0.87309474, 0.69454366, 0.22638509, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gggm5"]
+bg_color = Color(0.98340434, 0.81713504, 0.44943655, 1)
+
+[node name="Opening" type="Control" unique_id=1067806217]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_4qvrg")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2117790257]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=660576786]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="." unique_id=1191072857]
+layout_mode = 0
+offset_right = 1145.0
+offset_bottom = 642.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_hsrnu")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BtnSkip" type="Button" parent="." unique_id=1812558602]
+layout_mode = 0
+offset_left = 1071.0
+offset_top = 593.0
+offset_right = 1132.0
+offset_bottom = 636.0
+theme_override_fonts/font = ExtResource("2_hsrnu")
+theme_override_font_sizes/font_size = 30
+text = "SKIP"
+
+[node name="BtnStart" type="Button" parent="." unique_id=1900869928]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 250.0
+offset_right = 816.0
+offset_bottom = 368.0
+theme_override_colors/font_color = Color(0.6893719, 0.76121306, 0.13687769, 1)
+theme_override_fonts/font = ExtResource("2_hsrnu")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_hsrnu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ulneq")
+theme_override_styles/focus = SubResource("StyleBoxFlat_gggm5")
+text = "START GAME"
+icon_alignment = 1
+
+[connection signal="pressed" from="BtnSkip" to="." method="_on_btn_skip_pressed"]
+[connection signal="pressed" from="BtnStart" to="." method="_on_btn_start_pressed"]

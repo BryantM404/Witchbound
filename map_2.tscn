@@ -319,6 +319,7 @@ expand_mode = 3
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1409179612]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.456551, 0)
+visible = false
 light_energy = 10.0
 omni_range = 4096.0
 

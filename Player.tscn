@@ -6678,7 +6678,7 @@ bone_idx = 18
 [node name="sword_rare_gltf" parent="Rig_Medium_General/Rig_Medium/Skeleton3D/Tangan_Kanan" unique_id=1217985479 instance=ExtResource("4_tdg3f")]
 transform = Transform3D(0.5975143, 0.24906814, -0.07268804, -0.2472451, 0.601919, 0.030077666, 0.0786654, -5.8711528e-08, 0.64664775, 0.053377718, 0.15072572, 0.05812028)
 
-[node name="SwordArea" type="Area3D" parent="Rig_Medium_General/Rig_Medium/Skeleton3D/Tangan_Kanan/sword_rare_gltf/sword_rare" parent_id_path=PackedInt32Array(1217985479, 1616910697) index="0" unique_id=1606073280]
+[node name="SwordArea" type="Area3D" parent="Rig_Medium_General/Rig_Medium/Skeleton3D/Tangan_Kanan/sword_rare_gltf/sword_rare" parent_id_path=PackedInt32Array(1217985479, 1418130378) index="0" unique_id=1606073280]
 collision_layer = 0
 collision_mask = 2
 
