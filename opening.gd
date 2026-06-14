@@ -8,15 +8,13 @@ var story = [
 ]
 
 @onready var label = $Label
-@onready var btn_skip = $BtnSkip # Pastikan nama nodenya cocok
-@onready var btn_start = $BtnStart # Pastikan nama nodenya cocok
+@onready var btn_skip = $BtnSkip 
+@onready var btn_start = $BtnStart 
 
 func _ready():
-	# Di awal, sembunyikan teks cerita dan tombol skip
 	label.hide()
 	btn_skip.hide()
 	
-	# Tampilkan tombol Start di layar
 	btn_start.show()
 
 func play_story():
@@ -34,14 +32,12 @@ func play_story():
 
 	get_tree().change_scene_to_file("res://Main.tscn")
 
-# Fungsi ini terpanggil kalau tombol START ditekan
 func _on_btn_start_pressed():
-	btn_start.hide() # Hilangkan tombol Start
-	label.show() # Munculkan label teks cerita
-	btn_skip.show() # Munculkan tombol Skip
-	
-	play_story() # Jalankan efek ngetik ceritanya
+	btn_start.hide() 
+	label.show() 
+	btn_skip.show() 
+	Bgm.play()
+	play_story()
 
-# Fungsi ini terpanggil kalau tombol SKIP ditekan
 func _on_btn_skip_pressed():
 	get_tree().change_scene_to_file("res://Main.tscn")

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://lrjgdocgftoe"]
+
+[ext_resource type="AudioStream" uid="uid://bu5ovs14wxxmr" path="res://Musics/freesound_community-monster-in-castle-88610.mp3" id="1_l7bcd"]
+
+[node name="BGM" type="AudioStreamPlayer" unique_id=1605531303]
+stream = ExtResource("1_l7bcd")

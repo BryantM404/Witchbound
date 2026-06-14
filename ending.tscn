@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b5g13l8itib7o" path="res://ending.gd" id="1_dmh3q"]
 [ext_resource type="FontFile" uid="uid://cmcvesiqx7f5n" path="res://Fonts/Roman_New_Times.otf" id="2_iggq8"]
+[ext_resource type="AudioStream" uid="uid://dgrsgmkox50o6" path="res://Musics/u_ss015dykrt-brass-fanfare-reverberated-146263.mp3" id="3_iggq8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dmh3q"]
 
@@ -57,5 +58,9 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_iggq8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4jooh")
 theme_override_styles/focus = SubResource("StyleBoxFlat_k7rdy")
 text = "PLAY AGAIN "
+
+[node name="MusikEnding" type="AudioStreamPlayer" parent="." unique_id=593852890]
+stream = ExtResource("3_iggq8")
+autoplay = true
 
 [connection signal="pressed" from="BtnPlayAgain" to="." method="_on_btn_play_again_pressed"]

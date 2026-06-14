@@ -10,7 +10,7 @@ var story = [
 @onready var btn_play_again = $BtnPlayAgain
 
 func _ready():
-	# Di awal, sembunyikan tombol Play Again
+	Bgm.stop()
 	btn_play_again.hide() 
 	play_story()
 
@@ -19,19 +19,16 @@ func play_story():
 		label.text = text
 		label.visible_ratio = 0.0 
 		
-		var durasi_ngetik = text.length() * 0.05
+		var durasi_ngetik = text.length() * 0.05	
 		var tween = get_tree().create_tween()
 		tween.tween_property(label, "visible_ratio", 1.0, durasi_ngetik)
 		
 		await tween.finished
-		# Jeda agar pemain bisa baca kalimat terakhir
 		await get_tree().create_timer(3.0).timeout
 
-	# --- INI BAGIAN YANG KAMU MAU ---
-	label.hide() # Teks ceritanya hilang dulu
-	await get_tree().create_timer(0.5).timeout # Jeda sebentar biar nggak kaget
-	btn_play_again.show() # Baru tombol Play Again muncul di layar yang bersih
+	label.hide() 
+	await get_tree().create_timer(0.5).timeout 
+	btn_play_again.show() 
 
-# Fungsi saat tombol Play Again ditekan
 func _on_btn_play_again_pressed():
 	get_tree().change_scene_to_file("res://Opening.tscn")

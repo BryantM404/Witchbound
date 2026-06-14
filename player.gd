@@ -35,6 +35,8 @@ var sb_style: StyleBoxFlat = null
 @onready var player_hp_bar: ProgressBar = $"../GameUI/PlayerHPBar"
 
 func _ready() -> void:
+	if Bgm.playing == false:
+		Bgm.play()
 	current_hp = MAX_HP
 	is_dead = false 
 	
