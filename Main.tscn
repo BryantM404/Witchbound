@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dvxr228b5anp0"]
 
 [ext_resource type="PackedScene" uid="uid://t0t5c5a3xj5g" path="res://Player.tscn" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://d38pguv6cus7w" path="res://main.gd" id="1_xrxkg"]
 [ext_resource type="PackedScene" uid="uid://dttdjrvrxuj2i" path="res://root.tscn" id="2_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://c3i780mweroxl" path="res://enemy.tscn" id="3_r0du0"]
 [ext_resource type="PackedScene" uid="uid://co6nwaj62bae0" path="res://artifact.tscn" id="4_cm0pq"]
@@ -15,6 +16,53 @@
 [ext_resource type="PackedScene" uid="uid://dyykgmde043ns" path="res://KayKit Dungeon Pack 1.0/Models/gltf/pots.gltf.glb" id="12_kjvhd"]
 [ext_resource type="PackedScene" uid="uid://cd8fplqxy2gwa" path="res://KayKit Dungeon Pack 1.0/Models/gltf/sword_common.gltf.glb" id="13_5tuhn"]
 [ext_resource type="PackedScene" uid="uid://bwyit600jyayo" path="res://KayKit Dungeon Pack 1.0/Models/gltf/stairs.gltf.glb" id="15_2gh4u"]
+[ext_resource type="PackedScene" uid="uid://cved27cxxqdjc" path="res://KayKit Dungeon Pack 1.0/Models/gltf/bookcaseFilled.gltf.glb" id="16_devvj"]
+[ext_resource type="PackedScene" uid="uid://crwj48gemy1fa" path="res://KayKit Dungeon Pack 1.0/Models/gltf/door_gate.gltf.glb" id="17_3b0ty"]
+[ext_resource type="PackedScene" uid="uid://brapnw8n7xb66" path="res://KayKit Dungeon Pack 1.0/Models/gltf/tableSmall.gltf.glb" id="18_bg4s2"]
+[ext_resource type="Script" uid="uid://dfnedcovjhg8o" path="res://meja_artefak.gd" id="18_hhcpw"]
+[ext_resource type="PackedScene" uid="uid://dpowqcjt4eiow" path="res://KayKit Dungeon Pack 1.0/Models/gltf/potA.gltf.glb" id="19_hhcpw"]
+[ext_resource type="PackedScene" uid="uid://bmvhgwwi5162h" path="res://KayKit Dungeon Pack 1.0/Models/gltf/potB.gltf.glb" id="20_mxvw5"]
+[ext_resource type="PackedScene" uid="uid://csl3n0yi3b1qo" path="res://KayKit Dungeon Pack 1.0/Models/gltf/artifact.gltf.glb" id="20_xrxkg"]
+[ext_resource type="PackedScene" uid="uid://be53qn5nunacm" path="res://KayKit Dungeon Pack 1.0/Models/gltf/potC.gltf.glb" id="21_xrxkg"]
+[ext_resource type="Script" uid="uid://31h5143e3d8g" path="res://artefact_tracker.gd" id="24_mxvw5"]
+[ext_resource type="Texture2D" uid="uid://d2ci6fwhxi57t" path="res://arte.png" id="25_xrxkg"]
+
+[sub_resource type="Animation" id="Animation_mxvw5"]
+resource_name = "FadeIn"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xrxkg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sqvbp"]
+_data = {
+&"FadeOut": SubResource("Animation_mxvw5"),
+&"RESET": SubResource("Animation_xrxkg")
+}
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uu6xs"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -31,7 +79,34 @@ ambient_light_energy = 2.0
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mxvw5"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hri7i"]
+material = SubResource("StandardMaterial3D_mxvw5")
+size = Vector3(2.48, 0.195, 1.99)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bg4s2"]
+size = Vector3(1, 1.1992188, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sqvbp"]
+size = Vector3(1.6171875, 0.705246, 1.3032227)
+
 [node name="Node3D" type="Node3D" unique_id=477808356]
+script = ExtResource("1_xrxkg")
+
+[node name="Transition" type="CanvasLayer" parent="." unique_id=1944189696]
+
+[node name="ColorRect" type="ColorRect" parent="Transition" unique_id=460874899]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition" unique_id=742610654]
+libraries/ = SubResource("AnimationLibrary_sqvbp")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1024601321]
 environment = SubResource("Environment_cm0pq")
@@ -41,6 +116,56 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Player" parent="." unique_id=1901939185 instance=ExtResource("1_glv2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0.008, -26.341)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=890039358]
+
+[node name="ArtefactTracker" type="Control" parent="CanvasLayer" unique_id=60475930 groups=["tracker"]]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -442.0
+offset_top = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("24_mxvw5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ArtefactTracker" unique_id=1203038135]
+layout_mode = 0
+offset_right = 199.0
+offset_bottom = 100.0
+
+[node name="Artefact1" type="TextureRect" parent="CanvasLayer/ArtefactTracker/HBoxContainer" unique_id=2131347104]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("25_xrxkg")
+expand_mode = 3
+
+[node name="Artefact2" type="TextureRect" parent="CanvasLayer/ArtefactTracker/HBoxContainer" unique_id=707715796]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("25_xrxkg")
+expand_mode = 3
+
+[node name="Artefact3" type="TextureRect" parent="CanvasLayer/ArtefactTracker/HBoxContainer" unique_id=410028927]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("25_xrxkg")
+expand_mode = 3
+
+[node name="Artefact4" type="TextureRect" parent="CanvasLayer/ArtefactTracker/HBoxContainer" unique_id=287975279]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("25_xrxkg")
+expand_mode = 3
+
+[node name="Artefact5" type="TextureRect" parent="CanvasLayer/ArtefactTracker/HBoxContainer" unique_id=726881505]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("25_xrxkg")
+expand_mode = 3
 
 [node name="GameUI" type="CanvasLayer" parent="." unique_id=609936029]
 
@@ -52,13 +177,35 @@ offset_bottom = 641.0
 scale = Vector2(0.6399996, 1)
 
 [node name="Enemy" parent="." unique_id=663421275 instance=ExtResource("3_r0du0")]
-transform = Transform3D(-0.98819363, 0, 0.15321001, 0, 1, 0, -0.15321001, 0, -0.98819363, -0.024102807, 0.8991667, -17.54265)
+transform = Transform3D(0.9668234, 0, -0.25544578, 0, 1, 0, 0.25544578, 0, 0.9668234, 0.171, 1.384, -14.243)
+
+[node name="Enemy3" parent="." unique_id=239344178 instance=ExtResource("3_r0du0")]
+transform = Transform3D(0.95305336, 0, -0.30280232, 0, 1, 0, 0.30280232, 0, 0.95305336, -26.599, 1.336, 23.97)
 
 [node name="Enemy2" parent="." unique_id=1770474767 instance=ExtResource("3_r0du0")]
 transform = Transform3D(-0.98819363, 0, 0.15321001, 0, 1, 0, -0.15321001, 0, -0.98819363, -27.402462, 1.34557, -3.3936274)
 
+[node name="Enemy6" parent="." unique_id=116761713 instance=ExtResource("3_r0du0")]
+transform = Transform3D(-0.538771, 0, -0.84245205, 0, 1, 0, 0.84245205, 0, -0.538771, 13.650795, 1.312568, 19.81737)
+
+[node name="Enemy7" parent="." unique_id=1195902681 instance=ExtResource("3_r0du0")]
+transform = Transform3D(0.73845524, 0, 0.6743023, 0, 1, 0, -0.6743023, 0, 0.73845524, 5.036, 1.303, 21.307)
+
+[node name="Enemy5" parent="." unique_id=434347338 instance=ExtResource("3_r0du0")]
+transform = Transform3D(-0.48022324, 0, 0.87714607, 0, 1, 0, -0.87714607, 0, -0.48022324, 16.875135, 1.32, -0.32421765)
+MAX_HP = 100.0
+
+[node name="Enemy8" parent="." unique_id=1464689852 instance=ExtResource("3_r0du0")]
+transform = Transform3D(-0.99992514, 0, -0.012217064, 0, 1, 0, 0.012217064, 0, -0.99992514, -8.49, 1.38, -9.629)
+MAX_HP = 150.0
+
+[node name="Enemy4" parent="." unique_id=954049843 instance=ExtResource("3_r0du0")]
+transform = Transform3D(-0.84897166, 0, 0.5284382, 0, 1, 0, -0.5284382, 0, -0.84897166, 17.655115, 1.3517201, -24.09085)
+MAX_HP = 100.0
+
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=2028687920]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.456551, 0)
+visible = false
 light_energy = 10.0
 omni_range = 4096.0
 
@@ -69,15 +216,29 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -18.957487, 0.044400215
 transform = Transform3D(0.8000001, 0, 0, 0, 0.8000001, 0, 0, 0, 0.8000001, -0.23941422, 0.92867756, -0.09782028)
 is_real = false
 
-[node name="bench_gltf" parent="." unique_id=343283224 instance=ExtResource("4_wkp8b")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -11.602035, 0.075968504, -15.645588)
+[node name="bricks_gltf2" parent="." unique_id=469203829 instance=ExtResource("8_c6i3y")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -27.172129, 0.021730065, 27.317081)
 
-[node name="Artifact2" parent="bench_gltf" unique_id=1649151490 instance=ExtResource("4_cm0pq")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.83798647, 0.56316245, -0.21634102)
-
-[node name="Artifact3" parent="bench_gltf" unique_id=1408023997 instance=ExtResource("4_cm0pq")]
-transform = Transform3D(0.5, 0, 0, 0, 0.49999997, 0, 0, 0, 0.49999997, 0.83798647, 0.56316245, 0.17124462)
+[node name="Artifact" parent="bricks_gltf2" unique_id=1649151490 instance=ExtResource("4_cm0pq")]
+transform = Transform3D(0.8000001, 0, 0, 0, 0.8000001, 0, 0, 0, 0.8000001, -0.23941422, 0.92867756, -0.09782028)
 is_real = false
+artefact_index = 1
+
+[node name="bricks_gltf4" parent="." unique_id=1052248170 instance=ExtResource("8_c6i3y")]
+transform = Transform3D(-6.556708e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.556708e-08, 16.522938, -0.043159395, 2.9925442)
+
+[node name="Artifact" parent="bricks_gltf4" unique_id=2046156065 instance=ExtResource("4_cm0pq")]
+transform = Transform3D(0.8000001, 0, 0, 0, 0.8000001, 0, 0, 0, 0.8000001, -0.23941422, 0.92867756, -0.09782028)
+is_real = false
+artefact_index = 3
+
+[node name="bench_gltf" parent="." unique_id=343283224 instance=ExtResource("4_wkp8b")]
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 6.2442017, 0.07768631, -23.34166)
+
+[node name="Artifact2" parent="bench_gltf" unique_id=415161677 instance=ExtResource("4_cm0pq")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.82890797, 0.5378375, 0.2503276)
+is_real = false
+artefact_index = 2
 
 [node name="bookB_gltf" parent="bench_gltf" unique_id=883482228 instance=ExtResource("6_20pc6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24383163, 0.565974, -0.26326942)
@@ -92,7 +253,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.2
 transform = Transform3D(-5.2453668e-08, 0, -1.2, 0, 1.2, 0, 1.2, 0, -5.2453668e-08, -12.377066, 1.8674722, -9.138523)
 
 [node name="chest_rare_gltf" parent="." unique_id=413415814 instance=ExtResource("9_c2ibq")]
-transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, -26.54032, 0.0043998957, -15.459796)
+transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, -9.820356, -0.04937762, -14.892732)
 
 [node name="lootSackA_gltf" parent="chest_rare_gltf" unique_id=460688252 instance=ExtResource("10_fpfj3")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.49472904, 0.09350948, -0.05261898)
@@ -104,7 +265,8 @@ transform = Transform3D(-2.6226834e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.6226834e-
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.47711086, 0.0559547, -0.013244629)
 
 [node name="Artifact3" parent="chest_rare_gltf" unique_id=191355111 instance=ExtResource("4_cm0pq")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.3919363, 0.1663579, 0.23700905)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0018978119, 0.20753399, -0.05267477)
+artefact_index = 4
 
 [node name="sword_common_gltf" parent="chest_rare_gltf" unique_id=66262909 instance=ExtResource("13_5tuhn")]
 transform = Transform3D(0.20000002, 0.3464102, 0, 1.514207e-08, -8.742278e-09, 0.40000004, 0.3464102, -0.20000002, -1.7484556e-08, -0.3143282, 0.119741865, 0.22391796)
@@ -114,3 +276,58 @@ transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, -27.
 
 [node name="stairs_gltf" parent="." unique_id=1409064111 instance=ExtResource("15_2gh4u")]
 transform = Transform3D(9.539905e-09, 0, 0.8, 0, 0.8, 0, -0.8, 0, 9.539905e-09, 3.8542118, 0.9925866, 18.938501)
+visible = false
+
+[node name="bookcaseFilled_gltf" parent="." unique_id=1794432415 instance=ExtResource("16_devvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5749373, 0.084619164, 9.800409)
+
+[node name="bookcaseFilled_gltf2" parent="." unique_id=318158399 instance=ExtResource("16_devvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32256866, 0.041826665, 9.795536)
+
+[node name="door_gate_gltf" parent="." unique_id=1194031673 instance=ExtResource("17_3b0ty")]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, 1, -1, 4.371139e-08, -4.371139e-08, -2.691, 0.133, 9.106)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="door_gate_gltf" unique_id=1433295853]
+transform = Transform3D(-4.371139e-08, -4.371139e-08, -1, -1, 1.9106855e-15, 4.371139e-08, 0, 1, -4.371139e-08, 0.9470463, 0.17087007, -0.07677732)
+mesh = SubResource("BoxMesh_hri7i")
+
+[node name="MejaArtefak" type="Node3D" parent="." unique_id=1128768531]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.809898, 0.002775371, 9.8536415)
+script = ExtResource("18_hhcpw")
+player_path = NodePath("../Player")
+
+[node name="tableSmall_gltf" parent="MejaArtefak" unique_id=93388161 instance=ExtResource("18_bg4s2")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MejaArtefak" unique_id=442359104]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MejaArtefak/StaticBody3D" unique_id=417636859]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.099609375, 0)
+shape = SubResource("BoxShape3D_bg4s2")
+
+[node name="Area3D" type="Area3D" parent="MejaArtefak" unique_id=532382184]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MejaArtefak/Area3D" unique_id=1187451970]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009765625, 0.4280014, -0.15161133)
+shape = SubResource("BoxShape3D_sqvbp")
+
+[node name="artifact_gltf" parent="MejaArtefak" unique_id=237994000 instance=ExtResource("20_xrxkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.895, 0)
+visible = false
+
+[node name="Label3D" type="Label3D" parent="MejaArtefak" unique_id=996055614]
+transform = Transform3D(-1, -8.742278e-08, 0, -8.742278e-08, 1, -8.742278e-08, 7.642742e-15, -8.742278e-08, -1, 0, 1.22, 0)
+visible = false
+billboard = 1
+text = "Artefak asli belum ditemukan!"
+
+[node name="potA_gltf" parent="." unique_id=2048674278 instance=ExtResource("19_hhcpw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.762252, 0.044399858, 9.887942)
+
+[node name="potB_gltf" parent="." unique_id=919438657 instance=ExtResource("20_mxvw5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7312355, 0.044399984, 5.7577496)
+
+[node name="potC_gltf" parent="." unique_id=1220091480 instance=ExtResource("21_xrxkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0018960387, -0.00822413, 6.0887933)
+
+[connection signal="body_entered" from="MejaArtefak/Area3D" to="MejaArtefak" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="MejaArtefak/Area3D" to="MejaArtefak" method="_on_area_3d_body_exited"]

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ctm0ry6gut2ma"]
+
+[ext_resource type="PackedScene" uid="uid://buts1q8vgvs3c" path="res://KayKit Dungeon Pack 1.0/Models/gltf/staff_uncommon.gltf.glb" id="1_kaih6"]
+[ext_resource type="Script" uid="uid://bfrl37jv3baw0" path="res://artifact.gd" id="1_ycvyx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ycvyx"]
+radius = 0.56008464
+
+[node name="staff" type="Area3D" unique_id=694182771]
+script = ExtResource("1_ycvyx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=58130556]
+
+[node name="staff_uncommon_gltf" parent="." unique_id=735389560 instance=ExtResource("1_kaih6")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=429554981]
+transform = Transform3D(2.2866375, 0, 0, 0, 1.3668213, 0, 0, 0, 2.4539323, -0.008669853, 0.2672168, 0)
+shape = SubResource("SphereShape3D_ycvyx")
