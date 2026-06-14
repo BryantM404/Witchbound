@@ -3,6 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://t0t5c5a3xj5g" path="res://Player.tscn" id="1_glv2v"]
 [ext_resource type="PackedScene" uid="uid://dttdjrvrxuj2i" path="res://root.tscn" id="2_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://c3i780mweroxl" path="res://enemy.tscn" id="3_r0du0"]
+[ext_resource type="PackedScene" uid="uid://co6nwaj62bae0" path="res://artifact.tscn" id="4_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://dpcxc2bdpnc1s" path="res://KayKit Dungeon Pack 1.0/Models/gltf/bench.gltf.glb" id="4_wkp8b"]
+[ext_resource type="PackedScene" uid="uid://mpe71gdjupu3" path="res://KayKit Dungeon Pack 1.0/Models/gltf/bookB.gltf.glb" id="6_20pc6"]
+[ext_resource type="PackedScene" uid="uid://20jdnyu8u72j" path="res://KayKit Dungeon Pack 1.0/Models/gltf/bookcaseWideFilled_broken.gltf.glb" id="7_5vvyt"]
+[ext_resource type="PackedScene" uid="uid://c35wkksdlagty" path="res://KayKit Dungeon Pack 1.0/Models/gltf/bricks.gltf.glb" id="8_c6i3y"]
+[ext_resource type="PackedScene" uid="uid://d1oo3d2guerg3" path="res://KayKit Dungeon Pack 1.0/Models/gltf/chest_rare.gltf.glb" id="9_c2ibq"]
+[ext_resource type="PackedScene" uid="uid://ddy4fie618sfw" path="res://KayKit Dungeon Pack 1.0/Models/gltf/lootSackA.gltf.glb" id="10_fpfj3"]
+[ext_resource type="PackedScene" uid="uid://6qngvhm6stxx" path="res://KayKit Dungeon Pack 1.0/Models/gltf/chair.gltf.glb" id="10_j4qnp"]
+[ext_resource type="PackedScene" uid="uid://cny13dekf8u6v" path="res://KayKit Dungeon Pack 1.0/Models/gltf/coinsSmall.gltf.glb" id="11_sc1dx"]
+[ext_resource type="PackedScene" uid="uid://dyykgmde043ns" path="res://KayKit Dungeon Pack 1.0/Models/gltf/pots.gltf.glb" id="12_kjvhd"]
+[ext_resource type="PackedScene" uid="uid://cd8fplqxy2gwa" path="res://KayKit Dungeon Pack 1.0/Models/gltf/sword_common.gltf.glb" id="13_5tuhn"]
+[ext_resource type="PackedScene" uid="uid://bwyit600jyayo" path="res://KayKit Dungeon Pack 1.0/Models/gltf/stairs.gltf.glb" id="15_2gh4u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uu6xs"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -30,16 +42,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 [node name="Player" parent="." unique_id=1901939185 instance=ExtResource("1_glv2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0.008, -26.341)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1583338925]
-transform = Transform3D(1, 0, 0, 0, 0.82899857, -0.55925083, 0, 0.55925083, 0.82899857, -180.34589, -60.752686, 12.001369)
-visible = false
-light_color = Color(1, 1, 0.75686276, 1)
-light_energy = 9.186
-light_indirect_energy = 11.16
-light_volumetric_fog_energy = 14.778
-light_angular_distance = 90.0
-sky_mode = 1
-
 [node name="GameUI" type="CanvasLayer" parent="." unique_id=609936029]
 
 [node name="PlayerHPBar" type="ProgressBar" parent="GameUI" unique_id=1001230771]
@@ -51,3 +53,64 @@ scale = Vector2(0.6399996, 1)
 
 [node name="Enemy" parent="." unique_id=663421275 instance=ExtResource("3_r0du0")]
 transform = Transform3D(-0.98819363, 0, 0.15321001, 0, 1, 0, -0.15321001, 0, -0.98819363, -0.024102807, 0.8991667, -17.54265)
+
+[node name="Enemy2" parent="." unique_id=1770474767 instance=ExtResource("3_r0du0")]
+transform = Transform3D(-0.98819363, 0, 0.15321001, 0, 1, 0, -0.15321001, 0, -0.98819363, -27.402462, 1.34557, -3.3936274)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=2028687920]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.456551, 0)
+light_energy = 10.0
+omni_range = 4096.0
+
+[node name="bricks_gltf" parent="." unique_id=1221298585 instance=ExtResource("8_c6i3y")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -18.957487, 0.044400215, -18.221813)
+
+[node name="Artifact" parent="bricks_gltf" unique_id=627555655 instance=ExtResource("4_cm0pq")]
+transform = Transform3D(0.8000001, 0, 0, 0, 0.8000001, 0, 0, 0, 0.8000001, -0.23941422, 0.92867756, -0.09782028)
+is_real = false
+
+[node name="bench_gltf" parent="." unique_id=343283224 instance=ExtResource("4_wkp8b")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -11.602035, 0.075968504, -15.645588)
+
+[node name="Artifact2" parent="bench_gltf" unique_id=1649151490 instance=ExtResource("4_cm0pq")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.83798647, 0.56316245, -0.21634102)
+
+[node name="Artifact3" parent="bench_gltf" unique_id=1408023997 instance=ExtResource("4_cm0pq")]
+transform = Transform3D(0.5, 0, 0, 0, 0.49999997, 0, 0, 0, 0.49999997, 0.83798647, 0.56316245, 0.17124462)
+is_real = false
+
+[node name="bookB_gltf" parent="bench_gltf" unique_id=883482228 instance=ExtResource("6_20pc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24383163, 0.565974, -0.26326942)
+
+[node name="bookB_gltf2" parent="bench_gltf" unique_id=23515465 instance=ExtResource("6_20pc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24383163, 0.565974, -0.13414097)
+
+[node name="bookB_gltf3" parent="bench_gltf" unique_id=932959281 instance=ExtResource("6_20pc6")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.24383163, 0.5059947, 0.12258005)
+
+[node name="bookcaseWideFilled_broken_gltf" parent="." unique_id=1420754515 instance=ExtResource("7_5vvyt")]
+transform = Transform3D(-5.2453668e-08, 0, -1.2, 0, 1.2, 0, 1.2, 0, -5.2453668e-08, -12.377066, 1.8674722, -9.138523)
+
+[node name="chest_rare_gltf" parent="." unique_id=413415814 instance=ExtResource("9_c2ibq")]
+transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, -26.54032, 0.0043998957, -15.459796)
+
+[node name="lootSackA_gltf" parent="chest_rare_gltf" unique_id=460688252 instance=ExtResource("10_fpfj3")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.49472904, 0.09350948, -0.05261898)
+
+[node name="coinsSmall_gltf" parent="chest_rare_gltf" unique_id=789059706 instance=ExtResource("11_sc1dx")]
+transform = Transform3D(-2.6226834e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.6226834e-08, -0.370121, 0.10894295, -0.0017709732)
+
+[node name="pots_gltf" parent="chest_rare_gltf" unique_id=1438962356 instance=ExtResource("12_kjvhd")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.47711086, 0.0559547, -0.013244629)
+
+[node name="Artifact3" parent="chest_rare_gltf" unique_id=191355111 instance=ExtResource("4_cm0pq")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.3919363, 0.1663579, 0.23700905)
+
+[node name="sword_common_gltf" parent="chest_rare_gltf" unique_id=66262909 instance=ExtResource("13_5tuhn")]
+transform = Transform3D(0.20000002, 0.3464102, 0, 1.514207e-08, -8.742278e-09, 0.40000004, 0.3464102, -0.20000002, -1.7484556e-08, -0.3143282, 0.119741865, 0.22391796)
+
+[node name="chair_gltf" parent="." unique_id=1318235225 instance=ExtResource("10_j4qnp")]
+transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, -27.748568, 0.004400015, -13.416331)
+
+[node name="stairs_gltf" parent="." unique_id=1409064111 instance=ExtResource("15_2gh4u")]
+transform = Transform3D(9.539905e-09, 0, 0.8, 0, 0.8, 0, -0.8, 0, 9.539905e-09, 3.8542118, 0.9925866, 18.938501)

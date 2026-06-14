@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://co6nwaj62bae0"]
+
+[ext_resource type="Script" uid="uid://bfrl37jv3baw0" path="res://artifact.gd" id="1_v10k3"]
+[ext_resource type="PackedScene" uid="uid://csl3n0yi3b1qo" path="res://KayKit Dungeon Pack 1.0/Models/gltf/artifact.gltf.glb" id="1_vudh3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_v10k3"]
+radius = 0.54091567
+
+[node name="Artifact" type="Area3D" unique_id=1649151490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14684826, 0)
+script = ExtResource("1_v10k3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=882046895]
+
+[node name="artifact_gltf" parent="." unique_id=1821707012 instance=ExtResource("1_vudh3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0001309514, 0, -0.01696223)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=119101228]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008669853, 0.2672168, 0)
+shape = SubResource("SphereShape3D_v10k3")
