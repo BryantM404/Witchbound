@@ -230,12 +230,23 @@ func _on_sword_area_body_entered(body: Node3D) -> void:
 				
 # Tambahkan ini di bagian atas bersama variabel lainnya
 var jumlah_artefak_terkumpul: int = 0
+var jumlah_staff_terkumpul : int = 0
 
 # Tambahkan fungsi baru ini di bagian paling bawah script player
 func tambah_artefak_asli():
 	jumlah_artefak_terkumpul += 1
 	print("Artefak asli dibawa: ", jumlah_artefak_terkumpul)
 	# Di sini kamu bisa update teks UI kelompokmu, misal: "Artefak: 1/2"
+
+func tambah_staff():
+
+	jumlah_staff_terkumpul += 1
+
+	print(
+		"Staff terkumpul: ",
+		jumlah_staff_terkumpul,
+		"/5"
+	)
 
 func pemicu_jebakan():
 	# Contoh efek zonk: mengurangi darah player karena barang palsu beracun/meledak

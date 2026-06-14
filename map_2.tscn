@@ -8,6 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://tyxbqb8m6k3b" path="res://MODULAR_DUNGEON_3D_ASSETS_PACK/Wall.fbx" id="4_s123t"]
 [ext_resource type="PackedScene" uid="uid://b562re02ul2lb" path="res://KayKit Dungeon Pack 1.0/Models/dae/pillar.dae" id="5_luiv8"]
 [ext_resource type="PackedScene" uid="uid://ctm0ry6gut2ma" path="res://staff.tscn" id="6_rcsii"]
+[ext_resource type="Script" uid="uid://31h5143e3d8g" path="res://artefact_tracker.gd" id="9_8hrur"]
+[ext_resource type="Script" uid="uid://cnsheiyfgvtwd" path="res://staff.gd" id="9_fioup"]
+[ext_resource type="Texture2D" uid="uid://d0dum23a4osnn" path="res://staff.png" id="10_bik57"]
+[ext_resource type="PackedScene" uid="uid://c3i780mweroxl" path="res://enemy.tscn" id="11_ab82m"]
+[ext_resource type="PackedScene" uid="uid://n3qlnuuahqop" path="res://KayKit_Adventurers_2.0_FREE/KayKit_Adventurers_2.0_FREE/Characters/gltf/Mage.glb" id="12_fioup"]
+[ext_resource type="Script" uid="uid://ddtfhuk6xsidc" path="res://witch.gd" id="13_elquc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8hrur"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -69,6 +75,10 @@ _data = {
 &"FadeIn": SubResource("Animation_rcsii"),
 &"RESET": SubResource("Animation_xrxkg")
 }
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lvl6k"]
+radius = 2.0927734
+height = 4.185547
 
 [node name="Map2" type="Node3D" unique_id=963062824]
 script = ExtResource("1_s123t")
@@ -137,24 +147,109 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -30.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.98838, 3.4944801, -16.312212)
 shape = SubResource("BoxShape3D_bik57")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1601763592]
+[node name="PillarStaff1" type="StaticBody3D" parent="." unique_id=1601763592]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15006971, 0, -1.6012287)
 
-[node name="pillar" parent="StaticBody3D" unique_id=1650862167 instance=ExtResource("5_luiv8")]
+[node name="pillar" parent="PillarStaff1" unique_id=1650862167 instance=ExtResource("5_luiv8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0486596, -1.6430547, -25.020468)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1513193937]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PillarStaff1" unique_id=1513193937]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0467336, 1.6691039, -25.027563)
 shape = SubResource("BoxShape3D_rcsii")
 
-[node name="staff" parent="." unique_id=694182771 instance=ExtResource("6_rcsii")]
+[node name="staff1" parent="." unique_id=694182771 instance=ExtResource("6_rcsii")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1841424, 2.77202, -26.576555)
+script = ExtResource("9_fioup")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="staff" unique_id=559244568]
+[node name="OmniLight3D" type="OmniLight3D" parent="staff1" unique_id=559244568]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004412174, 0.5642719, -0.0205822)
 light_color = Color(0.9098039, 0.36862746, 0.9843137, 1)
 light_energy = 10.0
 omni_range = 4.0
+
+[node name="PillarStaff4" type="StaticBody3D" parent="." unique_id=1321471954]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.91403, 0, -12.907543)
+
+[node name="pillar" parent="PillarStaff4" unique_id=192279797 instance=ExtResource("5_luiv8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0486596, -1.6430547, -25.020468)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PillarStaff4" unique_id=34436697]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0467336, 1.6691039, -25.027563)
+shape = SubResource("BoxShape3D_rcsii")
+
+[node name="staff4" parent="." unique_id=1142911673 instance=ExtResource("6_rcsii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.879955, 2.77202, -37.88287)
+script = ExtResource("9_fioup")
+artefact_index = 1
+
+[node name="OmniLight3D" type="OmniLight3D" parent="staff4" unique_id=190788342]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004412174, 0.5642719, -0.0205822)
+light_color = Color(0.9098039, 0.36862746, 0.9843137, 1)
+light_energy = 10.0
+omni_range = 2.2778964
+
+[node name="PillarStaff2" type="StaticBody3D" parent="." unique_id=1385766829]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.028202, 0, 39.89074)
+
+[node name="pillar" parent="PillarStaff2" unique_id=742998086 instance=ExtResource("5_luiv8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0486596, -1.6430547, -25.020468)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PillarStaff2" unique_id=559730120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0467336, 1.6691039, -25.027563)
+shape = SubResource("BoxShape3D_rcsii")
+
+[node name="staff2" parent="." unique_id=206402827 instance=ExtResource("6_rcsii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.0732, 2.772, 14.870739)
+script = ExtResource("9_fioup")
+artefact_index = 3
+
+[node name="OmniLight3D" type="OmniLight3D" parent="staff2" unique_id=902221064]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004412174, 0.5642719, -0.0205822)
+light_color = Color(0.9098039, 0.36862746, 0.9843137, 1)
+light_energy = 10.0
+omni_range = 3.411772
+
+[node name="PillarStaff5" type="StaticBody3D" parent="." unique_id=1341136922]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.861601, 0, 22.202332)
+
+[node name="pillar" parent="PillarStaff5" unique_id=1345680752 instance=ExtResource("5_luiv8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0486596, -1.6430547, -25.020468)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PillarStaff5" unique_id=1444891870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0467336, 1.6691039, -25.027563)
+shape = SubResource("BoxShape3D_rcsii")
+
+[node name="staff5" parent="." unique_id=573793709 instance=ExtResource("6_rcsii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.906599, 2.772, -2.8176708)
+script = ExtResource("9_fioup")
+artefact_index = 2
+
+[node name="OmniLight3D" type="OmniLight3D" parent="staff5" unique_id=1093807798]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004412174, 0.5642719, -0.0205822)
+light_color = Color(0.9098039, 0.36862746, 0.9843137, 1)
+light_energy = 10.0
+omni_range = 4.0
+
+[node name="PillarStaff3" type="StaticBody3D" parent="." unique_id=2110025648]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8530064, 0, 62.95772)
+
+[node name="pillar" parent="PillarStaff3" unique_id=1159750747 instance=ExtResource("5_luiv8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0486596, -1.6430547, -25.020468)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PillarStaff3" unique_id=1732138538]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0467336, 1.6691039, -25.027563)
+shape = SubResource("BoxShape3D_rcsii")
+
+[node name="staff3" parent="." unique_id=722898158 instance=ExtResource("6_rcsii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1919918, 2.772, 37.93772)
+script = ExtResource("9_fioup")
+artefact_index = 4
+
+[node name="OmniLight3D" type="OmniLight3D" parent="staff3" unique_id=1844749717]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004412174, 0.5642719, -0.0205822)
+light_color = Color(0.9098039, 0.36862746, 0.9843137, 1)
+light_energy = 10.0
+omni_range = 2.4489725
 
 [node name="Transition" type="CanvasLayer" parent="." unique_id=709950460]
 
@@ -168,3 +263,117 @@ color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Transition" unique_id=1176925440]
 libraries/ = SubResource("AnimationLibrary_s123t")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1499055472]
+
+[node name="ArtefactTracker" type="Control" parent="CanvasLayer" unique_id=134845191 groups=["tracker"]]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -442.0
+offset_top = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("9_8hrur")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ArtefactTracker" unique_id=1532847544]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Artefact1" type="TextureRect" parent="CanvasLayer/ArtefactTracker/HBoxContainer" unique_id=1759355707]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("10_bik57")
+expand_mode = 3
+
+[node name="Artefact2" type="TextureRect" parent="CanvasLayer/ArtefactTracker/HBoxContainer" unique_id=1323863547]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("10_bik57")
+expand_mode = 3
+
+[node name="Artefact3" type="TextureRect" parent="CanvasLayer/ArtefactTracker/HBoxContainer" unique_id=649461139]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("10_bik57")
+expand_mode = 3
+
+[node name="Artefact4" type="TextureRect" parent="CanvasLayer/ArtefactTracker/HBoxContainer" unique_id=1045669180]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("10_bik57")
+expand_mode = 3
+
+[node name="Artefact5" type="TextureRect" parent="CanvasLayer/ArtefactTracker/HBoxContainer" unique_id=161300638]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("10_bik57")
+expand_mode = 3
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1409179612]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.456551, 0)
+light_energy = 10.0
+omni_range = 4096.0
+
+[node name="Enemy" parent="." unique_id=663421275 instance=ExtResource("11_ab82m")]
+transform = Transform3D(0.6908824, 0, -0.72296715, 0, 1, 0, 0.72296715, 0, 0.6908824, -0.020991802, 2.276399, -31.08126)
+MAX_HP = 100.0
+
+[node name="Enemy3" parent="." unique_id=651178725 instance=ExtResource("11_ab82m")]
+transform = Transform3D(-0.9868557, 0, 0.1616037, 0, 1, 0, -0.1616037, 0, -0.9868557, 19.216766, 2.276399, -19.576124)
+
+[node name="Enemy4" parent="." unique_id=1319848261 instance=ExtResource("11_ab82m")]
+transform = Transform3D(0.87377214, 0, 0.48633537, 0, 1, 0, -0.48633537, 0, 0.87377214, -11.650407, 2.276399, -7.582802)
+MAX_HP = 100.0
+
+[node name="Enemy5" parent="." unique_id=2112126972 instance=ExtResource("11_ab82m")]
+transform = Transform3D(0.87377214, 0, 0.48633537, 0, 1, 0, -0.48633537, 0, 0.87377214, -15.1852665, 2.276399, -5.253512)
+MAX_HP = 100.0
+
+[node name="Enemy6" parent="." unique_id=1063350235 instance=ExtResource("11_ab82m")]
+transform = Transform3D(0.9970526, 0, 0.07671902, 0, 1, 0, -0.07671902, 0, 0.9970526, -37.481865, 2.276399, 14.355032)
+
+[node name="Enemy8" parent="." unique_id=210244451 instance=ExtResource("11_ab82m")]
+transform = Transform3D(0.012217053, 0, -0.9999252, 0, 1, 0, 0.9999252, 0, 0.012217053, -37.481865, 2.276399, 38.181957)
+
+[node name="Enemy9" parent="." unique_id=1004707535 instance=ExtResource("11_ab82m")]
+transform = Transform3D(-0.96269155, 0, -0.27060047, 0, 1, 0, 0.27060047, 0, -0.96269155, -9.13231, 2.276399, 16.409859)
+
+[node name="Enemy10" parent="." unique_id=1071284589 instance=ExtResource("11_ab82m")]
+transform = Transform3D(0.080198914, 0, -0.9967787, 0, 1, 0, 0.9967787, 0, 0.080198914, 2.6741705, 2.276399, 37.77473)
+MAX_HP = 100.0
+
+[node name="Enemy7" parent="." unique_id=1532301939 instance=ExtResource("11_ab82m")]
+transform = Transform3D(-0.99945, 0, -0.033155166, 0, 1, 0, 0.033155166, 0, -0.99945, -37.481865, 2.276399, -0.06641388)
+
+[node name="Enemy2" parent="." unique_id=903376206 instance=ExtResource("11_ab82m")]
+transform = Transform3D(-0.99999994, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -0.99999994, 36.18968, 2.276399, -36.085594)
+MAX_HP = 150.0
+
+[node name="Node3D" type="Node3D" parent="." unique_id=708086921]
+transform = Transform3D(-0.463296, 0, -0.8862036, 0, 1, 0, 0.8862036, 0, -0.463296, 31.265114, 1.0183644, 30.999487)
+script = ExtResource("13_elquc")
+player_path = NodePath("../Player")
+
+[node name="Mage" parent="Node3D" unique_id=702003688 instance=ExtResource("12_fioup")]
+
+[node name="Area3D" type="Area3D" parent="Node3D" unique_id=825899417]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Area3D" unique_id=2129447787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010922432, 1.1894531, 0)
+shape = SubResource("CapsuleShape3D_lvl6k")
+
+[node name="Label3D" type="Label3D" parent="Node3D" unique_id=153540082]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1957321, 2.7487855, 0.93176085)
+billboard = 1
+text = "Tekan F untuk berbicara"
+
+[connection signal="body_entered" from="Node3D/Area3D" to="Node3D" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Node3D/Area3D" to="Node3D" method="_on_area_3d_body_exited"]
