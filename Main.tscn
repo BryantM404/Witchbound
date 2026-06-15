@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://be53qn5nunacm" path="res://KayKit Dungeon Pack 1.0/Models/gltf/potC.gltf.glb" id="21_xrxkg"]
 [ext_resource type="Script" uid="uid://31h5143e3d8g" path="res://artefact_tracker.gd" id="24_mxvw5"]
 [ext_resource type="Texture2D" uid="uid://d2ci6fwhxi57t" path="res://arte.png" id="25_xrxkg"]
+[ext_resource type="PackedScene" uid="uid://lrjgdocgftoe" path="res://bgm.tscn" id="27_sqvbp"]
 
 [sub_resource type="Animation" id="Animation_mxvw5"]
 resource_name = "FadeIn"
@@ -328,6 +329,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7312355, 0.044399984, 5.75
 
 [node name="potC_gltf" parent="." unique_id=1220091480 instance=ExtResource("21_xrxkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0018960387, -0.00822413, 6.0887933)
+
+[node name="BGM" parent="." unique_id=1605531303 instance=ExtResource("27_sqvbp")]
 
 [connection signal="body_entered" from="MejaArtefak/Area3D" to="MejaArtefak" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="MejaArtefak/Area3D" to="MejaArtefak" method="_on_area_3d_body_exited"]

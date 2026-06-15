@@ -10,8 +10,10 @@ var story = [
 @onready var label = $Label
 @onready var btn_skip = $BtnSkip 
 @onready var btn_start = $BtnStart 
+@onready var LogoWb = $LogoWb
 
 func _ready():
+	Bgm.play()
 	label.hide()
 	btn_skip.hide()
 	
@@ -33,6 +35,7 @@ func play_story():
 	get_tree().change_scene_to_file("res://Main.tscn")
 
 func _on_btn_start_pressed():
+	LogoWb.hide()
 	btn_start.hide() 
 	label.show() 
 	btn_skip.show() 

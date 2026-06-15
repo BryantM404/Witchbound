@@ -4,29 +4,15 @@
 [ext_resource type="FontFile" uid="uid://cmcvesiqx7f5n" path="res://Fonts/Roman_New_Times.otf" id="2_iggq8"]
 [ext_resource type="AudioStream" uid="uid://dgrsgmkox50o6" path="res://Musics/u_ss015dykrt-brass-fanfare-reverberated-146263.mp3" id="3_iggq8"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dmh3q"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iggq8"]
-bg_color = Color(0.9411335, 0.40121004, 0.40581426, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4jooh"]
-bg_color = Color(1, 0.057010733, 0.087345, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7rdy"]
-bg_color = Color(0.8324005, 0.4823302, 0.5293774, 1)
-
 [node name="Ending" type="Control" unique_id=1067806217]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_dmh3q")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=2117790257]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1809031141]
+layout_mode = 0
+offset_right = 1158.0
+offset_bottom = 651.0
 color = Color(0, 0, 0, 1)
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=660576786]
@@ -51,12 +37,9 @@ offset_left = 430.0
 offset_top = 280.0
 offset_right = 711.0
 offset_bottom = 340.0
+theme_override_colors/font_hover_color = Color(0.03529412, 0.35686275, 1, 1)
 theme_override_fonts/font = ExtResource("2_iggq8")
 theme_override_font_sizes/font_size = 60
-theme_override_styles/normal = SubResource("StyleBoxEmpty_dmh3q")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_iggq8")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4jooh")
-theme_override_styles/focus = SubResource("StyleBoxFlat_k7rdy")
 text = "PLAY AGAIN "
 
 [node name="MusikEnding" type="AudioStreamPlayer" parent="." unique_id=593852890]

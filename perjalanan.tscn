@@ -2,19 +2,17 @@
 
 [ext_resource type="Script" uid="uid://2uupumdlc8ic" path="res://perjalanan.gd" id="1_tbjik"]
 [ext_resource type="FontFile" uid="uid://cmcvesiqx7f5n" path="res://Fonts/Roman_New_Times.otf" id="2_h5cj7"]
+[ext_resource type="PackedScene" uid="uid://lrjgdocgftoe" path="res://bgm.tscn" id="3_h5cj7"]
 
 [node name="Perjalanan" type="Control" unique_id=1067806217]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_tbjik")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=2117790257]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1091218038]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 644.0
 color = Color(0, 0, 0, 1)
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=660576786]
@@ -43,5 +41,7 @@ offset_bottom = 636.0
 theme_override_fonts/font = ExtResource("2_h5cj7")
 theme_override_font_sizes/font_size = 30
 text = "SKIP"
+
+[node name="BGM" parent="." unique_id=1605531303 instance=ExtResource("3_h5cj7")]
 
 [connection signal="pressed" from="BtnSkip" to="." method="_on_btn_skip_pressed"]

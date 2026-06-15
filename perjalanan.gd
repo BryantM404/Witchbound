@@ -9,6 +9,7 @@ var story = [
 @onready var btn_skip = $BtnSkip # Pastikan tombol skip kamu namanya BtnSkip di Scene Tree
 
 func _ready():
+	Bgm.play()
 	# Langsung jalankan cerita saat scene ini terbuka
 	play_story()
 

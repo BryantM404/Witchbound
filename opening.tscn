@@ -3,12 +3,13 @@
 [ext_resource type="Script" uid="uid://bjbepp228ieem" path="res://opening.gd" id="1_4qvrg"]
 [ext_resource type="FontFile" uid="uid://cmcvesiqx7f5n" path="res://Fonts/Roman_New_Times.otf" id="2_hsrnu"]
 [ext_resource type="Texture2D" uid="uid://mcmp0lpd5ehb" path="res://Logo_Witchbound.png" id="3_ulneq"]
+[ext_resource type="PackedScene" uid="uid://lrjgdocgftoe" path="res://bgm.tscn" id="4_gggm5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hsrnu"]
-bg_color = Color(0.91475123, 0.91496545, 0.5991015, 1)
+bg_color = Color(0.3254902, 0.16862746, 0.70980394, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ulneq"]
-bg_color = Color(0.87309474, 0.69454366, 0.22638509, 1)
+bg_color = Color(0.52701193, 0.42582545, 0.9580297, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gggm5"]
 bg_color = Color(0.98340434, 0.81713504, 0.44943655, 1)
@@ -18,13 +19,10 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_4qvrg")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=2117790257]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1783402246]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 636.0
 color = Color(0, 0, 0, 1)
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=660576786]
@@ -70,7 +68,7 @@ offset_left = 320.0
 offset_top = 443.0
 offset_right = 816.0
 offset_bottom = 561.0
-theme_override_colors/font_color = Color(0.6893719, 0.76121306, 0.13687769, 1)
+theme_override_colors/font_color = Color(0.9372549, 0.8392157, 0.84313726, 1)
 theme_override_fonts/font = ExtResource("2_hsrnu")
 theme_override_font_sizes/font_size = 80
 theme_override_styles/normal = SubResource("StyleBoxFlat_hsrnu")
@@ -78,6 +76,8 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_ulneq")
 theme_override_styles/focus = SubResource("StyleBoxFlat_gggm5")
 text = "START GAME"
 icon_alignment = 1
+
+[node name="BGM" parent="." unique_id=1605531303 instance=ExtResource("4_gggm5")]
 
 [connection signal="pressed" from="BtnSkip" to="." method="_on_btn_skip_pressed"]
 [connection signal="pressed" from="BtnStart" to="." method="_on_btn_start_pressed"]
